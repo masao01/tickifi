@@ -39,6 +39,7 @@ export type IUser = {
   imageUrl: string;
   bio: string;
   publicKey: string;
+  privateKey: string;
 };
 
 export type INewUser = {

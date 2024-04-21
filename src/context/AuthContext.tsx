@@ -11,7 +11,8 @@ export const INITIAL_USER = {
   email: "",
   imageUrl: "",
   bio: "",
-  publicKey: ""
+  publicKey: "",
+  privateKey: ""
 };
 
 const INITIAL_STATE = {
@@ -52,7 +53,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           email: currentAccount.email,
           imageUrl: currentAccount.imageUrl,
           bio: currentAccount.bio,
-          publicKey: currentAccount.publicKey
+          publicKey: currentAccount.publicKey,
+          privateKey: currentAccount.privateKey
         });
         setIsAuthenticated(true);
 

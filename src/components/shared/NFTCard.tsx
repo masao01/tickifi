@@ -27,7 +27,11 @@ const NFTCard = ({ nft }: NFTCardProps) => {
         <Button
           type="button"
           className="shad-button_dark_4"
-          onClick={() => navigate("/create-post")}>
+          onClick={() => {
+            localStorage.setItem('nftImage', nft.metadata.image);
+            navigate("/create-post")
+          }
+          }>
             Review
         </Button>
 

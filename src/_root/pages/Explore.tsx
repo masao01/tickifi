@@ -111,6 +111,8 @@
 // export default Explore;
 
 import React, { useState } from 'react';
+import { mintTicket } from "@/web3/utils";
+import { useUserContext } from "@/context/AuthContext";
 
 // Define the event type
 type Event = {
@@ -205,10 +207,12 @@ const EventList: React.FC<EventListProps> = ({ events, selectedNetwork, onBuyTic
 
 // Main Explore Component
 const Explore: React.FC = () => {
+  const { user } = useUserContext();
   const [selectedNetwork, setSelectedNetwork] = useState<'BASE' | 'MORPH'>('BASE');
-
-  const handleBuyTicket = (network: 'BASE' | 'MORPH') => {
+  const handleBuyTicket = async(network: 'BASE' | 'MORPH') => {
     console.log(`Buying ticket on the ${network} network.`);
+    const txHash = await mintTicket(network, user.privateKey);
+    console.log(`txHash: ${txHash}`);
   };
 
   return (

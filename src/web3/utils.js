@@ -9,6 +9,7 @@ export const mintTicket = async (network, privateKey) => {
     const ticketId = 0
     const tx = await contract.mint(walletAddress, ticketId, 1, "0x")
     await tx.wait()
+    console.log(`tx: ${JSON.stringify(tx, null, 2)}`);
     return tx.hash
 }
 
