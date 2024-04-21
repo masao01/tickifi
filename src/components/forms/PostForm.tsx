@@ -56,6 +56,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
         imageId: post.imageId,
         imageUrl: post.imageUrl,
       });
+      console.log(`updatedPost: ${JSON.stringify(updatedPost, null, 2)}`);
 
       if (!updatedPost) {
         toast({
@@ -70,6 +71,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
       ...value,
       userId: user.id,
     });
+    console.log(`new postt: ${JSON.stringify(newPost, null, 2)}`);
 
     if (!newPost) {
       toast({

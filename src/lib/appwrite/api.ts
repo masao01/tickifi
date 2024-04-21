@@ -119,6 +119,8 @@ export async function signOutAccount() {
 
 // ============================== CREATE POST
 export async function createPost(post: INewPost) {
+  console.log(`post: ${JSON.stringify(post, null, 2)}`)
+
   try {
     // Upload file to appwrite storage
     const uploadedFile = await uploadFile(post.file[0]);
@@ -127,6 +129,7 @@ export async function createPost(post: INewPost) {
 
     // Get file url
     const fileUrl = getFilePreview(uploadedFile.$id);
+
     if (!fileUrl) {
       await deleteFile(uploadedFile.$id);
       throw Error;
@@ -149,7 +152,7 @@ export async function createPost(post: INewPost) {
         tags: tags,
       }
     );
-
+    console.log(`new posttttttttttt: ${JSON.stringify(newPost, null, 2)}`)
     if (!newPost) {
       await deleteFile(uploadedFile.$id);
       throw Error;
