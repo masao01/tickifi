@@ -16,23 +16,21 @@ const NFTCard = ({ nft }: NFTCardProps) => {
     console.log(`nft: ${JSON.stringify(nft, null, 2)}`)
   return (
     <div className="post-card">
-      <div className="flex-between">
-        <div className="flex items-center gap-3">
-          <p>{nft.metadata.name}</p>
-          {/* <img
+          <h3>{nft.metadata.name}</h3>
+          <hr></hr>
+          <img
             src={nft.metadata.image}
             alt="nft image"
             className="post_details-img"
-          /> */}
-        </div>
-
+          />
+        
         <Button
           type="button"
           className="shad-button_dark_4"
           onClick={() => navigate("/create-post")}>
             Review
         </Button>
-      </div>
+
     </div>
   );
 };
