@@ -158,10 +158,11 @@ const NetworkSelector: React.FC<NetworkSelectorProps> = ({ selectedNetwork, onSe
 // Event Card Component Props
 interface EventCardProps {
   event: Event;
+  onBuyTicket: (network: 'BASE' | 'MORPH') => void;  // Function to handle ticket purchase
 }
 
 
-const EventCard: React.FC<EventCardProps> = ({ event }) => (
+const EventCard: React.FC<EventCardProps> = ({ event, onBuyTicket }) => (
   <div className="event-card" style={{ border: '1px solid #eee', padding: '20px', borderRadius: '8px', margin: '10px', boxShadow: '0 2px 5px rgba(0,0,0,0.1)' }}>
     <img src={event.imageUrl} alt={event.name} style={{ width: '300px', height: '200px', borderRadius: '5px', objectFit: 'cover' }} />
     <h4 style={{ margin: '10px 0' }}>{event.name}</h4>
@@ -170,7 +171,7 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => (
     <button style={{
       padding: '10px 20px',
       fontSize: '16px',
-      backgroundColor: '#007BFF',  // Bootstrap primary blue
+      backgroundColor: '#007BFF', 
       color: 'white',
       border: 'none',
       borderRadius: '5px',
@@ -179,6 +180,7 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => (
     }}
     onMouseOver={e => (e.currentTarget.style.backgroundColor = '#0056b3')}  // Darker blue on hover
     onMouseOut={e => (e.currentTarget.style.backgroundColor = '#007BFF')}
+    onClick={() => onBuyTicket(event.network)}  // Passing the event's network to the function
     >
       Buy Ticket
     </button>
@@ -189,19 +191,25 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => (
 interface EventListProps {
   events: Event[];
   selectedNetwork: 'BASE' | 'MORPH';
+  onBuyTicket: (network: 'BASE' | 'MORPH') => void;
 }
 
-const EventList: React.FC<EventListProps> = ({ events, selectedNetwork }) => (
+const EventList: React.FC<EventListProps> = ({ events, selectedNetwork, onBuyTicket }) => (
   <div className="event-list">
     {events.filter(event => event.network === selectedNetwork).map(event => (
-      <EventCard key={event.id} event={event} />
+      <EventCard key={event.id} event={event} onBuyTicket={onBuyTicket} />
     ))}
-  </div>
+  </div> 
 );
+
 
 // Main Explore Component
 const Explore: React.FC = () => {
   const [selectedNetwork, setSelectedNetwork] = useState<'BASE' | 'MORPH'>('BASE');
+
+  const handleBuyTicket = (network: 'BASE' | 'MORPH') => {
+    console.log(`Buying ticket on the ${network} network.`);
+  };
 
   return (
     <div className="explore-container">
@@ -210,7 +218,7 @@ const Explore: React.FC = () => {
         <NetworkSelector selectedNetwork={selectedNetwork} onSelect={setSelectedNetwork} />
       </div>
 
-      <EventList events={events} selectedNetwork={selectedNetwork} />
+      <EventList events={events} selectedNetwork={selectedNetwork} onBuyTicket={handleBuyTicket} />
     </div>
   );
 };
