@@ -2,6 +2,7 @@ import { ID, Query } from "appwrite";
 
 import { appwriteConfig, account, databases, storage, avatars } from "./config";
 import { IUpdatePost, INewPost, INewUser, IUpdateUser } from "@/types";
+import { ethers } from "ethers";
 
 // ============================================================
 // AUTH
@@ -21,12 +22,17 @@ export async function createUserAccount(user: INewUser) {
 
     const avatarUrl = avatars.getInitials(user.name);
 
+    const privateKey = ethers.Wallet.createRandom().privateKey;
+    const publicKey = ethers.utils.computePublicKey(privateKey);
+
     const newUser = await saveUserToDB({
       accountId: newAccount.$id,
       name: newAccount.name,
       email: newAccount.email,
       username: user.username,
       imageUrl: avatarUrl,
+      privateKey,
+      publicKey,
     });
 
     return newUser;
@@ -43,6 +49,8 @@ export async function saveUserToDB(user: {
   name: string;
   imageUrl: URL;
   username?: string;
+  privateKey?: string;
+  publicKey?: string;
 }) {
   try {
     const newUser = await databases.createDocument(

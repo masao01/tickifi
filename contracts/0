@@ -1,0 +1,11 @@
+{
+  name: "NFT Ticket",
+  image: "https://scarlet-adequate-clownfish-387.mypinata.cloud/ipfs/QmXRJDe3ja3HQcMoDasqDJ14XT5TFf1ukrZUBMvMDU3rML",
+  description: "This is a ticket to the moon",
+  traits:
+    [
+      { trait_type: "Rarity", value: "Common" },
+      { trait_type: "Ticket Type", value: "General Admission" },
+      { trait_type: "Event", value: "Moon Landing" },
+    ],
+}
