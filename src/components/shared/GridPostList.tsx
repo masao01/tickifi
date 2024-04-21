@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import { PostStats } from "@/components/shared";
 import { useUserContext } from "@/context/AuthContext";
+import { Button } from "../ui";
 
 type GridPostListProps = {
   posts: Models.Document[];
@@ -29,8 +30,8 @@ const GridPostList = ({
             />
           </Link>
 
-          <div className="grid-post_user">
-            {showUser && (
+          {/* <div className="grid-post_user"> */}
+            {/* {showUser && (
               <div className="flex items-center justify-start gap-2 flex-1">
                 <img
                   src={
@@ -42,9 +43,15 @@ const GridPostList = ({
                 />
                 <p className="line-clamp-1">{post.creator.name}</p>
               </div>
-            )}
-            {showStats && <PostStats post={post} userId={user.id} />}
-          </div>
+            )} */}
+            {/* {showStats && <PostStats post={post} userId={user.id} />} */}
+          {/* </div> */}
+          <Button
+            className="absolute top-2 right-2"
+            onClick={() => console.log("clicked")}
+          >
+            Buy Ticket
+          </Button>
         </li>
       ))}
     </ul>
