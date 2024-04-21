@@ -1,8 +1,4 @@
-import { Models } from "appwrite";
-import { Link } from "react-router-dom";
 import { Button } from "@/components/ui";
-import { PostStats } from "@/components/shared";
-import { multiFormatDateString } from "@/lib/utils";
 import { useNavigate } from "react-router-dom";
 
 type NFTCardProps = {

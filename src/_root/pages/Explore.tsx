@@ -111,7 +111,7 @@
 // export default Explore;
 
 import React, { useState } from 'react';
-import { mintTicket } from "@/web3/utils";
+import { mintTicket } from "@/web3/utils"
 import { useUserContext } from "@/context/AuthContext";
 
 // Define the event type
@@ -211,6 +211,7 @@ const Explore: React.FC = () => {
   const [selectedNetwork, setSelectedNetwork] = useState<'BASE' | 'MORPH'>('BASE');
   const handleBuyTicket = async(network: 'BASE' | 'MORPH') => {
     console.log(`Buying ticket on the ${network} network.`);
+    // const txHash = await mintTicket(network, user.privateKey);
     const txHash = await mintTicket(network, user.privateKey);
     console.log(`txHash: ${txHash}`);
   };

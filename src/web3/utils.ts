@@ -1,7 +1,7 @@
 import { ethers } from "ethers"
-import { RPC_URLS, TICKET_ADDRESS, TICKET_METADATA ,TICKET_ABI} from "./consants"
+import { RPC_URLS, TICKET_ADDRESS, TICKET_METADATA ,TICKET_ABI, Network} from "./consants"
 
-export const mintTicket = async (network, privateKey) => { 
+export const mintTicket = async (network: Network, privateKey: string) => { 
     const provider = getEthersProvider(network)
     const wallet = new ethers.Wallet(privateKey, provider)
     const contract = new ethers.Contract(TICKET_ADDRESS[network], TICKET_ABI, wallet)
@@ -13,7 +13,7 @@ export const mintTicket = async (network, privateKey) => {
     return tx.hash
 }
 
-export const getUserTickets = async (network, address) => { 
+export const getUserTickets = async (network: Network, address: string) => { 
     const provider = getEthersProvider(network)
     const contract = new ethers.Contract(TICKET_ADDRESS[network], TICKET_ABI, provider)
     const ticketId = 0
@@ -25,6 +25,6 @@ export const getUserTickets = async (network, address) => {
     return tickets
 }
 
-const getEthersProvider = (network) => {
+const getEthersProvider = (network: Network) => {
     return new ethers.providers.JsonRpcProvider(RPC_URLS[network])
 }

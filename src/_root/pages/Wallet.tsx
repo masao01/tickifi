@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
-import { Loader, UserCard } from "@/components/shared";
+import { Loader } from "@/components/shared";
 import { useNavigate } from "react-router-dom";
 import { getUserTickets } from "@/web3/utils";
 import { useUserContext } from "@/context/AuthContext";

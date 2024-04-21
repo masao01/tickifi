@@ -636,3 +636,18 @@ export const TICKET_ABI = [
 		"type": "function"
 	}
 ]
+
+export type Network = 'BASE' | 'MORPH';
+export type Ticket = {
+	id: number;
+	metadata: {
+		name: string;
+		image: string;
+		description: string;
+		traits: { trait_type: string, value: string }[]
+	}
+}
+export type TicketAddress = {
+	BASE: string;
+	MORPH: string;
+}
