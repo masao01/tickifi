@@ -1,7 +1,7 @@
+
 import { useEffect, useState } from "react";
-import { useToast } from "@/components/ui/use-toast";
+// import { useToast } from "@/components/ui/use-toast";
 import { Loader } from "@/components/shared";
-import { useNavigate } from "react-router-dom";
 import { getUserTickets } from "@/web3/utils";
 import { useUserContext } from "@/context/AuthContext";
 import { NFTCard } from "@/components/shared";
@@ -10,9 +10,8 @@ const Wallet = () => {
 const { user } = useUserContext();
 console.log(`user: ${JSON.stringify(user, null, 2)}`);
 
-  const { toast } = useToast();
-  const navigate = useNavigate();
-  const [nfts, setNFTs] = useState<NFTCardProps[]>([]);
+  // const { toast } = useToast();
+  const [nfts, setNFTs] = useState<any[]>([]);
   
   useEffect(() => {
     const fetchNFTs = async () => {
@@ -27,10 +26,10 @@ console.log(`user: ${JSON.stringify(user, null, 2)}`);
         }
 
         console.log(`userNfts: ${JSON.stringify(userNfts, null, 2)}`);
-        setNFTs(userNfts);
-      } catch (error) {
+        setNFTs(userNfts || []);
+      } catch (error: any) {
         console.error("Error fetching NFTs:", error);
-        toast.error("Error fetching NFTs");
+        // toast?.error("Error fetching NFTs"); 
       }
     };
 

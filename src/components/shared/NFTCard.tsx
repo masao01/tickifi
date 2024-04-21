@@ -1,13 +1,7 @@
 import { Button } from "@/components/ui";
 import { useNavigate } from "react-router-dom";
 
-type NFTCardProps = {
-  name: string,
-  network: string,
-  image: string
-};
-
-const NFTCard = ({ nft }: NFTCardProps) => {
+const NFTCard = ({ nft }: any) => {
   const navigate = useNavigate();
     console.log(`nft: ${JSON.stringify(nft, null, 2)}`)
   return (

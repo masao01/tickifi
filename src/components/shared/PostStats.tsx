@@ -6,7 +6,7 @@ import { checkIsLiked } from "@/lib/utils";
 import {
   useLikePost,
   useSavePost,
-  useDeleteSavedPost,
+  // useDeleteSavedPost,
   useGetCurrentUser,
 } from "@/lib/react-query/queries";
 
@@ -27,7 +27,7 @@ const PostStats = ({ post, userId }: PostStatsProps) => {
 
   const { mutate: likePost } = useLikePost();
   const { mutate: savePost } = useSavePost();
-  const { mutate: deleteSavePost } = useDeleteSavedPost();
+  // const { mutate: deleteSavePost } = useDeleteSavedPost();
 
   const { data: currentUser } = useGetCurrentUser();
   
@@ -65,10 +65,10 @@ const PostStats = ({ post, userId }: PostStatsProps) => {
   ) => {
     e.stopPropagation();
 
-    if (savedPostRecord) {
-      setIsSaved(false);
-      return deleteSavePost(savedPostRecord.$id);
-    }
+    // if (savedPostRecord) {
+    //   setIsSaved(false);
+    //   return deleteSavePost(savedPostRecord.$id);
+    // }
 
     savePost({ userId: userId, postId: post.$id });
     setIsSaved(true);
